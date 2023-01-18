@@ -38,7 +38,7 @@ describe("Thermostat", () =>{
     it("only allow temperature to increase by 5 if powermode is true", () => {
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(true)
-        for(i = 21; i <= 25; i++){
+        for(let i = 21; i <= 25; i++){
             thermostat.up();
             expect(thermostat.getTemperature()).toBe(i);
         }
@@ -49,13 +49,25 @@ describe("Thermostat", () =>{
     it("allows temperature to increase above 26 if powermode is off", () => {
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(false)
-        for(i = 21; i <= 25; i++){
+
+        for(let i = 21; i <= 25; i++){
             thermostat.up();
             expect(thermostat.getTemperature()).toBe(i);
         }
         thermostat.up();
         expect(thermostat.getTemperature()).toEqual(26)
 
+    })
+
+    it("allows a maximum temperature of 32 if powermode is off", () => {
+        const thermostat = new Thermostat()
+        thermostat.setPowerSavingMode(false)
+
+        for(let i = 0; i <= 32; i++ ){
+            thermostat.up();
+        }
+        thermostat.up();
+        expect(thermostat.getTemperature()).toEqual(32)
     })
 
 })
