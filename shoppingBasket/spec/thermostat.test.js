@@ -7,5 +7,11 @@ describe("Thermostat", () =>{
         expect(thermostat.getTemperature()).toEqual(20)
     })
 
+    it("can increase the temperature by 1", () => {
+        const thermostat = new Thermostat()
+            thermostat.up()
+        expect(thermostat.getTemperature()).toEqual(21)
+    })
+
 
 })
