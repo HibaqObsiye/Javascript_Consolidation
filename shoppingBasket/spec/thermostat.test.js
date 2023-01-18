@@ -25,7 +25,7 @@ describe("Thermostat", () =>{
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(true)
 
-        expect(thermostat.setPowerSavingMode).toEqual(true)
+        expect(thermostat.setPowerSavingMode(true)).toEqual(true)
     })
 
 })
