@@ -21,11 +21,28 @@ describe("Thermostat", () =>{
         expect(thermostat.getTemperature()).toEqual(19)
     })
 
-    it("powerSavingMode is on by default ", () => {
+    it("powerSavingMode is on if selected ", () => {
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(true)
 
         expect(thermostat.setPowerSavingMode(true)).toEqual(true)
+    })
+
+    it("returns falls if powerSavingMode is turned off", () => {
+        const thermostat = new Thermostat()
+        thermostat.setPowerSavingMode(false)
+
+        expect(thermostat.setPowerSavingMode(false)).toEqual(false)
+    })
+
+    it("only allow temperature to increase by 5", () => {
+        const thermostat = new Thermostat()
+        for(i = 21; i <= 25; i++){
+            thermostat.up();
+            expect(thermostat.getTemperature()).toBe(i);
+        }
+        thermostat.up();
+        expect(thermostat.getTemperature()).toEqual(25)
     })
 
 })
