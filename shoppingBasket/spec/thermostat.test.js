@@ -28,7 +28,7 @@ describe("Thermostat", () =>{
         expect(thermostat.setPowerSavingMode(true)).toEqual(true)
     })
 
-    it("returns falls if powerSavingMode is turned off", () => {
+    it("returns false if powerSavingMode is turned off", () => {
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(false)
 
@@ -62,9 +62,10 @@ describe("Thermostat", () =>{
     it("allows a maximum temperature of 32 if powermode is off", () => {
         const thermostat = new Thermostat()
         thermostat.setPowerSavingMode(false)
-
-        for(let i = 0; i <= 32; i++ ){
+        let i = 0
+        while (i <= 11 ){
             thermostat.up();
+            i ++;
         }
         thermostat.up();
         expect(thermostat.getTemperature()).toEqual(32)
