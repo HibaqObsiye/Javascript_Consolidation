@@ -21,4 +21,11 @@ describe("Thermostat", () =>{
         expect(thermostat.getTemperature()).toEqual(19)
     })
 
+    it("powerSavingMode is on by default ", () => {
+        const thermostat = new Thermostat()
+        thermostat.setPowerSavingMode(true)
+
+        expect(thermostat.setPowerSavingMode).toEqual(true)
+    })
+
 })
