@@ -1,0 +1,1 @@
+const fetchPokemon = require('./api.js')
