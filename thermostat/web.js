@@ -14,8 +14,12 @@ app.post('/up', (req, res) =>{
     res.send(JSON.stringify({temperature:  thermostat.up()})) 
 })
 
-app.delete('/down', (req, res) =>{
+app.post('/down', (req, res) =>{
     res.send(JSON.stringify({temperature: thermostat.down()}))
+})
+
+app.delete('/temperature', (req, res)=>{
+    res.send(JSON.stringify({temperature: thermostat.resetTempeature()}))
 })
 
 console.log(`Server listening on local host ${port} `)

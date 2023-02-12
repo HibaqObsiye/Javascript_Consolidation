@@ -25,5 +25,10 @@ class Thermostat{
        return this.powerMode = value
     }
 
+    resetTempeature(){
+      this.temperature = 20
+      return this.temperature
+    }
+
 }
 module.exports = Thermostat
