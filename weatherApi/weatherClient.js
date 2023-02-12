@@ -11,22 +11,27 @@ class WeatherClient{
     }
 
     compareWith(city1, city2){
-        const temp = []
-         
-        const request1 = fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city1}&appid=${apiKey}`)
-                        .then((response)=> response.json())
-                        .then((data)=> temp.push(data.main.temp))
-        const request2 =    fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city2}&appid=${apiKey}`)
-                          .then((response)=> response.json())
-                          .then((data)=> temp.push(data.main.temp))
-        
-        if(temp[0] > temp[1]){
-            return `${city1} is warmer with temp of ${temp[0]}`
-        }
-        else{
-            return `${city2} is warmer with temp of ${temp[1]}`
-        }
+        let temp1, temp2;
 
+        return fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city1}&appid=${apiKey}`)
+          .then((response) => response.json())
+          .then((data) => {
+            temp1 = data.main.temp;
+            return fetch(`http://api.openweathermap.org/data/2.5/weather?units=metric&q=${city2}&appid=${apiKey}`);
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            temp2 = data.main.temp;
+            if (temp1 > temp2) {
+              return `${city1} is warmer with a temperature of ${temp1}`;
+            } else {
+              return `${city2} is warmer with a temperature of ${temp2}`;
+            }
+          }
+        )
+        .then((result) => console.log(result)) //why does it need this line
+        ;
+        
     }
 }
 
