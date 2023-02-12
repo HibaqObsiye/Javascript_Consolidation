@@ -3,9 +3,15 @@ const Thermostat = require('./thermostat')
 const app = express();
 const port = 3000;
 
+let thermostat = new Thermostat()
 app.get('/temperature',(req, res) =>{
-    const thermostat = new Thermostat()
+   
     res.send(JSON.stringify({ temperature: thermostat.getTemperature()})) //json.stringify is a key-value pair
+})
+
+app.post('/up', (req, res) =>{
+ 
+    res.send(JSON.stringify({temperature:  thermostat.up()})) 
 })
 
 console.log(`Server listening on local host ${port} `)
